@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
+body {
+    background: #141414;
+    color: #ffffff
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.movie-app > .row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.heading-row {
+    display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.column {
+    float: left;
+    width: 50%;
+}
+
+.heading-row input{
+    width: 20vw;
+    border: 2px solid #64943E;
+    font-size: 18px;
+    padding: 12px;
+    background: transparent;
+    color: white;
+    margin-right: 10px;
+    float: right;
+    margin: 10px 10px 0px 0px;
+}
+
+.heading-row h1{
+    color: #94BF47;
+}
+
+.movie-app > .row button{
+    width: 15vw;
+    border: 2px solid #94BF47;
+    border-radius: 20px;
+    background-color: #94BF47;
+    color: #ffffff;
+}
+
+.movie-app > .row button:hover{
+    border: 2px solid #64943E;
+    background-color: #64943E;
+}
+
+@media screen and (min-width: 320px) {
+    .movie-app > .row button{
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h3 {
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .movie-app > .row img{
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .movie-app > .row img{
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .movie-app > .row img{
+        height: 350px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .movie-app > .row img{
+        height: 400px;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
