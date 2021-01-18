@@ -8,7 +8,8 @@ function App () {
   const [movies, setMovies] = useState([])
   const [nominations, setNominations] = useState([])
   const [searchValue, setSearchValue] = useState('django')
-   
+  const [state, setState] = useState(false)
+
   const getMovieRequest = async (searchValue) => {
     const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=cdf468f0` 
 
@@ -34,10 +35,27 @@ function App () {
     localStorage.setItem('shoppies-nominations', JSON.stringify(items))
   }
   const addNominations = (movie) => {
-    const newNominationsList = [...nominations, movie]
-    setNominations(newNominationsList)
-    saveToLocalStorage(newNominationsList)
+    if(nominations.includes(movie)){
+      alert("Movie already added")
+    }
+    else{
+      const newNominationsList = [...nominations, movie]
+      setNominations(newNominationsList)
+      saveToLocalStorage(newNominationsList)
+    }
+    
+
   }
+
+  useEffect(() => {
+    if(nominations.length === 5){
+      alert("You have selected 5 nominees")
+      setState(true)
+    }
+    else if(nominations.length < 5) {
+      setState(false)
+    }
+  }, [nominations])
 
   const removeNominations = (movie) => {
     const newNominationsList = nominations.filter((nomination) => nomination.imdbID !== movie.imdbID)
@@ -53,7 +71,7 @@ function App () {
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue}/>
       </div>
       <div className="row">
-        <MovieList movies={movies} handleNominationsClick={addNominations} buttonText="Nominate"/>
+        <MovieList movies={movies} handleNominationsClick={addNominations} buttonText="Nominate" disableCondition={state}/>
       </div>
       <div className="row">
         <MovieListHeading heading="Nominations"/>
@@ -63,6 +81,7 @@ function App () {
       </div>
     </div>
   );
+
 }
 
 export default App;
